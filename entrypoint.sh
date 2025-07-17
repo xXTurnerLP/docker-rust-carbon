@@ -29,4 +29,8 @@ cp /LinuxStdinSupport.dll ./HarmonyMods/LinuxStdinSupport.dll
 
 # Run server
 chmod +x ./carbon.sh
-./carbon.sh "${MODIFIED_STARTUP}"
+sed -i "10c\
+cd /home/container\n\
+./RustDedicated ${MODIFIED_STARTUP}
+" carbon.sh
+./carbon.sh
