@@ -11,7 +11,7 @@ shopt -s nullglob # allow pattern matching failure to omit result instead of ret
 
 # Update server
 
-if [[ "${STEAMCMD_UPDATE_SERVER}" == "1"]]; then
+if [[ "${STEAMCMD_UPDATE_SERVER}" == "1" ]]; then
 	rm -rf /home/container/steamapps
 
 	if [[ "${VALIDATE_SERVER_FILES}" == "1" ]]; then
@@ -33,7 +33,7 @@ cp /LinuxStdinSupport.dll ./HarmonyMods/LinuxStdinSupport.dll
 sed -i "10c\
 source ./start_server.sh
 " carbon.sh
-if [[ "${USING_ORIGINAL_START_SERVER_SCRIPT}" == "1"]]; then
+if [[ "${USING_ORIGINAL_START_SERVER_SCRIPT}" == "1" ]]; then
 	cp /start_server.sh ./start_server.sh
 fi
 
