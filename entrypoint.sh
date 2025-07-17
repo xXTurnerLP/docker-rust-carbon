@@ -1,9 +1,5 @@
 #!/bin/bash
 
-printf "################ : START"
-pwd
-ls -la
-
 # Change Directory
 cd /home/container
 
@@ -16,12 +12,11 @@ shopt -s nullglob # allow pattern matching failure to omit result instead of ret
 # Update server
 rm -rf /home/container/steamapps
 
-VALIDATE=""
 if [[ "${VALIDATE_SERVER_FILES}" == "1" ]]; then
-    VALIDATE="validate"
+	./steamcmd/steamcmd.sh +force_install_dir /home/container +login anonymous +app_update 258550 validate +quit
+else
+	./steamcmd/steamcmd.sh +force_install_dir /home/container +login anonymous +app_update 258550 +quit
 fi
-
-./steamcmd/steamcmd.sh +force_install_dir /home/container +login anonymous +app_update 258550 ${VALIDATE} +quit
 
 MODIFIED_STARTUP=$(eval echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g') # replaces {{var}} to ${var} (so bash can understand it)
 
