@@ -40,10 +40,6 @@ ENV			USER=container HOME=/home/container
 # Switch to the container of the server
 WORKDIR		/home/container
 
-# Install steamcmd
-RUN			mkdir /home/container/steamcmd && \
-			curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxf - -C /home/container/steamcmd/.
-
 # Copy some files over to the container
 COPY		./entrypoint.sh /entrypoint.sh
 COPY		./LinuxStdinSupport.dll /LinuxStdinSupport.dll

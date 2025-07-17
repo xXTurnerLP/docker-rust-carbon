@@ -7,6 +7,10 @@ ls -la
 # Change Directory
 cd /home/container
 
+# Install steamdcmd
+mkdir -p ./steamcmd
+curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxf - -C ./steamcmd/.
+
 shopt -s nullglob # allow pattern matching failure to omit result instead of returning the pattern used
 
 # Update server
