@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Change Directory
+cd /home/container
+
+shopt -s nullglob # allow pattern matching failure to omit result instead of returning the pattern used
+
+# Update server
+rm -rf /home/container/steamapps
+
+VALIDATE=""
+if [[ "${VALIDATE_SERVER_FILES}" == "1" ]]; then
+    VALIDATE="validate"
+fi
+
+./steamcmd/steamcmd.sh +force_install_dir /home/container +login anonymous +app_update 258550 ${VALIDATE} +quit
+
+MODIFIED_STARTUP=$(eval echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g') # replaces {{var}} to ${var} (so bash can understand it)
+
+# Update carbon (uses carbon production)
+curl -sSL "https://github.com/CarbonCommunity/Carbon/releases/download/production_build/Carbon.Linux.Release.tar.gz" | tar zx
+
+# Copy harmony mod to fix the stdin
+mkdir -p HarmonyMods
+cp /LinuxStdinSupport.dll ./HarmonyMods/LinuxStdinSupport.dll
+
+# Run server
+chmod +x ./carbon.sh
+./carbon.sh "${MODIFIED_STARTUP}"
