@@ -12,9 +12,13 @@ shopt -s nullglob # allow pattern matching failure to omit result instead of ret
 # Update server
 rm -rf /home/container/steamapps
 
+printf "VALIDATE_SERVER_FILES = ${VALIDATE_SERVER_FILES}\n"
+
 if [[ "${VALIDATE_SERVER_FILES}" == "1" ]]; then
+	printf "Validating install"
 	./steamcmd/steamcmd.sh +force_install_dir /home/container +login anonymous +app_update 258550 validate +quit
 else
+	printf "Not validating install"
 	./steamcmd/steamcmd.sh +force_install_dir /home/container +login anonymous +app_update 258550 +quit
 fi
 
