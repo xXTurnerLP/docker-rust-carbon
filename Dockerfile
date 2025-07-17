@@ -42,6 +42,7 @@ WORKDIR		/home/container
 
 # Copy some files over to the container
 COPY		./entrypoint.sh /entrypoint.sh
+COPY		./start_server.sh /start_server.sh
 COPY		./LinuxStdinSupport.dll /LinuxStdinSupport.dll
 
 CMD		[ "/bin/bash", "/entrypoint.sh" ]

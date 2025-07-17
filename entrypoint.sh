@@ -27,11 +27,11 @@ curl -sSL "https://github.com/CarbonCommunity/Carbon/releases/download/productio
 mkdir -p HarmonyMods
 cp /LinuxStdinSupport.dll ./HarmonyMods/LinuxStdinSupport.dll
 
+cp /start_server.sh ./start_server.sh
+
 # Run server
 chmod +x ./carbon.sh
 sed -i "10c\
-cd /home/container\n\
-printf \"Running server with args: ${MODIFIED_STARTUP}\n\"\n\
-./RustDedicated -batchmode -logfile 2>&1 "$MODIFIED_STARTUP"
+source ./start_server.sh
 " carbon.sh
 ./carbon.sh
