@@ -1,5 +1,9 @@
 #!/bin/bash
 
+printf "################ : START"
+pwd
+ls -la
+
 # Change Directory
 cd /home/container
 
