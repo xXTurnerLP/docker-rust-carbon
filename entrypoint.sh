@@ -29,4 +29,4 @@ cp /LinuxStdinSupport.dll ./HarmonyMods/LinuxStdinSupport.dll
 
 # Run server
 chmod +x ./carbon.sh
-./carbon.sh ${MODIFIED_STARTUP}
+./carbon.sh "${MODIFIED_STARTUP}"
