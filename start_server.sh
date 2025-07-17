@@ -1,5 +1,7 @@
 cd /home/container
 
-printf "Running server with args: '${MODIFIED_STARTUP}'\n"
+MODIFIED_STARTUP=$(eval echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g') # replaces {{var}} to ${var} (so bash can understand it)
 
-./RustDedicated -batchmode -logfile 2>&1 "${MODIFIED_STARTUP}"
+printf "Running server with args: '$(eval echo ${MODIFIED_STARTUP})'\n"
+
+./RustDedicated -batchmode "$(eval echo ${MODIFIED_STARTUP})"
