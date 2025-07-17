@@ -48,4 +48,4 @@ RUN			mkdir /home/container/steamcmd && \
 COPY		./entrypoint.sh /entrypoint.sh
 COPY		./LinuxStdinSupport.dll /LinuxStdinSupport.dll
 
-# CMD		[ "/bin/bash", "/entrypoint.sh" ]
+CMD		[ "/bin/bash", "/entrypoint.sh" ]
