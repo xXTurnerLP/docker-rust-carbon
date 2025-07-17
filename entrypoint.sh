@@ -31,6 +31,6 @@ cp /LinuxStdinSupport.dll ./HarmonyMods/LinuxStdinSupport.dll
 chmod +x ./carbon.sh
 sed -i "10c\
 cd /home/container\n\
-./RustDedicated ${MODIFIED_STARTUP}
+$MODIFIED_STARTUP
 " carbon.sh
 ./carbon.sh
