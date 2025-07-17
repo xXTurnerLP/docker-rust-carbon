@@ -31,6 +31,7 @@ cp /LinuxStdinSupport.dll ./HarmonyMods/LinuxStdinSupport.dll
 chmod +x ./carbon.sh
 sed -i "10c\
 cd /home/container\n\
-$MODIFIED_STARTUP
+printf \"Running server with args: ${MODIFIED_STARTUP}\n\"\n\
+./RustDedicated -batchmode -logfile 2>&1 "$MODIFIED_STARTUP"
 " carbon.sh
 ./carbon.sh
