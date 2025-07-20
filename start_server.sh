@@ -22,11 +22,11 @@ SERVER_STARTED_AT=$(date +%Y-%m-%d_%H:%M:%S)
 	$( [ -z ${MAP_URL} ] && printf "+server.worldsize \"${WORLD_SIZE}\" +server.seed \"${WORLD_SEED}\"" || printf "+server.levelurl \"${MAP_URL}\"" ) \
 	$( [ -n "${SERVER_TAGS}" ] && printf "+server.tags \"${SERVER_TAGS}\"" ) \
 	${ADDITIONAL_ARGS} \
-    | tee -a ./logs/${SERVER_STARTED_AT}.log
+    | ts '[%Y-%m-%d %H:%M:%.S]' | tee -a ./logs/${SERVER_STARTED_AT}.log
 
 # if the "Log ended" string is not in the logs, the docker container was killed forcefully
 if [ $? -eq 0 ]; then
-	printf "### Log ended. Server stopped cleanly @ $(date +%Y-%m-%d\ %H:%M:%S)" | tee -a ./logs/${SERVER_STARTED_AT}.log
+	printf "### Log ended. Server stopped cleanly @ $(date +%Y-%m-%d\ %H:%M:%S)" | ts '[%Y-%m-%d %H:%M:%.S]' | tee -a ./logs/${SERVER_STARTED_AT}.log
 else
-	printf "### Log ended. Server crashed with exit code '$?' @ $(date +%Y-%m-%d_%H:%M:%S)" | tee -a ./logs/${SERVER_STARTED_AT}.log
+	printf "### Log ended. Server crashed with exit code '$?' @ $(date +%Y-%m-%d_%H:%M:%S)" | ts '[%Y-%m-%d %H:%M:%.S]' | tee -a ./logs/${SERVER_STARTED_AT}.log
 fi
