@@ -10,8 +10,8 @@ SERVER_STARTED_AT=$(date +%Y-%m-%d_%H:%M:%S)
 
 ./RustDedicated -logFile - -batchmode \
 	+server.port ${SERVER_PORT} \
-    $( [ -n "${QUERY_PORT}" ] && +server.queryport ${QUERY_PORT} ) \
-    $( [ -n "${SERVER_IDENTITY}" ] && +server.identity "${SERVER_IDENTITY}" ) \
+    $( [ -n "${QUERY_PORT}" ] && printf "+server.queryport ${QUERY_PORT}" ) \
+    $( [ -n "${SERVER_IDENTITY}" ] && printf "+server.identity \"${SERVER_IDENTITY}\"" ) \
     +server.gamemode "${GAMEMODE}" \
     +server.hostname "${HOSTNAME}" \
     +server.description "${DESCRIPTION}" \
